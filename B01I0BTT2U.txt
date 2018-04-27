@@ -1,0 +1,2 @@
+ASIN,Price,Name
+B01I0BTT2U,56.99,Fuller Brush Electrostatic Carpet & Floor Sweeper - 9" Cleaning Path - Bright White
