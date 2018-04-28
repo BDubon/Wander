@@ -11,10 +11,10 @@
 - Nicolas Fuster
 
 ### Summary
-	  Our group is planning to build a web scraper to gather data about products offered on Amazon.com. 
-  We intend to periodically track and collect data so the end user can track price changes over time.
-  We also plan on offering a graphical user interface (GUI) where the user will easily be able to paste a
-  product’s url and visually compare the compiled data for such product.
+Our group is planning to build a web scraper to gather data about products offered on Amazon.com. 
+We intend to periodically track and collect data so the end user can track price changes over time.
+We also plan on offering a graphical user interface (GUI) where the user will easily be able to paste a
+product’s url and visually compare the compiled data for such product.
 
 ### Project Goals	
 - Successfully request web pages
