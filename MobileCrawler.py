@@ -1,13 +1,17 @@
 from lxml import html
 import csv, os, json
+import re
 import requests
 from bs4 import BeautifulSoup as bs
 from user_agent import generate_user_agent
+#from PIL import Image
+#from io import BytesIO
 
-url = 'https://www.amazon.com/gp/product/B072Y5MZQH'
+url = 'https://www.amazon.com/gp/product/B078GYH44J'
 
 
 def pageRequest(url):
+    """This function requests a webpage from the URL provided by the user."""
     headers = {
         'User-Agent': generate_user_agent(device_type='smartphone')
     }
@@ -19,6 +23,7 @@ def pageRequest(url):
 
 
 def priceGet(soup):
+    """This function extracts the price from a mobile version of a web page."""
     main = soup.find('span', class_='price-large')
     main = main.text
     main = main.strip()
@@ -37,6 +42,7 @@ def priceGet(soup):
 
 
 def nameGet(soup):
+    """This function extracts the name from a mobile version of a web page."""
     name = soup.find('span', id='title', class_='a-size-small')
     name = name.text
     name = name.strip()
@@ -44,9 +50,19 @@ def nameGet(soup):
 
     return name
 
+def imageGet(soup):
+    img = soup.find('img', class_='a-hidden')
+    img = str(img)
+    imgURL = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2})).+jpg', img)
+    #picURL = imgURL[0]
+    #im = Image.open(requests.get(picURL, stream=True).raw)
+    print(imgURL)
+
+
 
 soup = pageRequest(url)
 priceGet(soup)
 nameGet(soup)
+imageGet(soup)
 
 

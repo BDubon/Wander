@@ -1,5 +1,6 @@
 import requests as req
 from bs4 import BeautifulSoup as bs
+from user_agent import generate_user_agent
 import arrow
 
 # URL = 'https://smile.amazon.com/Passengers-Headlight-Headlamp-Replacement-33101-SDA-A01/dp/B007TY6MK2/'
@@ -7,7 +8,6 @@ import arrow
 
 # Enter ASIN
 userLink = input('Enter Link: ')
-
 
 # Extract ASIN from user URL
 asin = userLink.split('/')
@@ -19,15 +19,15 @@ for i in asin:
     else:
         asinN = asinNum
 
-
+# URL Construct
 URL = 'https://www.amazon.com/gp/product/' + asinN
 
 # Spoof Amazon
 headers = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
-
+    'User-Agent': generate_user_agent(device_type='desktop', os=('mac', 'linux'))
+}
 # Request Page
-page = req.get(URL, headers=headers)
+page = req.get(URL, timeout=5, headers=headers)
 
 # Status code
 print(page.status_code)
