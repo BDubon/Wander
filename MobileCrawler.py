@@ -7,7 +7,7 @@ from user_agent import generate_user_agent
 #from PIL import Image
 #from io import BytesIO
 
-url = 'https://www.amazon.com/gp/product/B078GYH44J'
+url = 'https://www.amazon.com/gp/product/B0097UW2Y6'
 
 
 def pageRequest(url):
@@ -53,7 +53,7 @@ def nameGet(soup):
 def imageGet(soup):
     img = soup.find('img', class_='a-hidden')
     img = str(img)
-    imgURL = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2})).+jpg', img)
+    imgURL = re.findall('https?://.+jpg', img)
     #picURL = imgURL[0]
     #im = Image.open(requests.get(picURL, stream=True).raw)
     print(imgURL)
