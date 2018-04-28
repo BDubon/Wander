@@ -1,8 +1,8 @@
 # Group_Project_326
-## INST326 Group Project
+## Project Amazon Price Piranha
 
 
-**Project Amazon Price Piranha**
+**INST326 Group Project**\n
 *Project Proposal* 
 
 Group Members
