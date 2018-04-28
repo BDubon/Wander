@@ -13,8 +13,8 @@ Group Members
 
 Summary
 	  Our group is planning to build a web scraper to gather data about products offered on Amazon.com. 
-  With intend to periodically track and collect data so the end user can track prices changes over time. 
-  Also, we plan on offering a graphical user interface (GUI) where the user will easily be able to paste a 
+  We intend to periodically track and collect data so the end user can track price changes over time.
+  We also plan on offering a graphical user interface (GUI) where the user will easily be able to paste a
   product’s url and visually compare the compiled data for such product.
 
 Project Goals	
