@@ -2,8 +2,7 @@
 ## Project Amazon Price Piranha
 
 
-**INST326 Group Project**
-***Project Proposal***
+***INST326 Group Project Proposal***
 
 Group Members
 - Nicholas Archer
