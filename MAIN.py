@@ -6,24 +6,21 @@ import arrow
 # Root URL: https://www.amazon.com/gp/product/ + ASIN
 
 # Enter ASIN
-itemURL = '   '
-itemNum = input('Enter Link: ')
+userLink = input('Enter Link: ')
 
 
 # Extract ASIN
-asin = itemNum.split('/')
+asin = userLink.split('/')
 asinN = None
 for i in asin:
-    #asinNum = i.text
     asinNum = i.strip()
     if len(asinNum) != 10:
         continue
     else:
         asinN = asinNum
 
-print(asinN)
 
-'''URL = 'https://www.amazon.com/gp/product/' + itemNum
+URL = 'https://www.amazon.com/gp/product/' + asinN
 
 # Spoof Amazon
 headers = {
@@ -50,9 +47,6 @@ price = price.strip()
 price = price.lstrip('$')
 price = float(price)
 
-
-
-
 # Print extracted data
 print('Name:', name)
 print('Price:', price)
@@ -65,10 +59,6 @@ with open(asinN + '.csv', 'w') as newWrite:
     headerRow = 'Date,ASIN,Price,Name\n'
     newWrite.write(headerRow)
     row = date+ ',' + asinN + ',' + str(price) + ',' + name
-    newWrite.write(row)'''
+    newWrite.write(row)
 
-# Just checking to see if GitHub works
-
-# Make this change for me please
-# adding more stuff
 
