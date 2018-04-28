@@ -67,5 +67,5 @@ with open(asinN + '.csv', 'w') as newWrite:
     row = date+ ',' + asinN + ',' + str(price) + ',' + name
     newWrite.write(row)'''
 
-
+# Just checking to see if GitHub works
 
