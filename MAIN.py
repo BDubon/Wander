@@ -9,7 +9,7 @@ import arrow
 userLink = input('Enter Link: ')
 
 
-# Extract ASIN
+# Extract ASIN from user URL
 asin = userLink.split('/')
 asinN = None
 for i in asin:
