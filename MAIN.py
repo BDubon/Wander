@@ -8,7 +8,7 @@ import arrow
 # URL = 'https://smile.amazon.com/Passengers-Headlight-Headlamp-Replacement-33101-SDA-A01/dp/B007TY6MK2/'
 # Root URL: https://www.amazon.com/gp/product/ + ASIN
 
-# Enter ASIN
+# Paste Product's Link
 userLink = input('Enter Link: ')
 
 # Extract ASIN from user URL
