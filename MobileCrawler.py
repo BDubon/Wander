@@ -79,11 +79,23 @@ def imageGet(soup):
 def csvWriter(asin, price, name):
     """ Use this function when a product is first looked up. It'll
     create a new csv file to which we can append future data. """
+    date = arrow.now().format('YYYY/MM/DD')
+    headers = ['Date', 'ASIN', 'Price', 'Name']
+    row = [date, asin, price, name]
     with open('CSVs/' + asin + '.csv', 'w') as newWrite:
-        date = arrow.now().format('YYYY/MM/DD')
-        headerRow = 'Date,ASIN,Price,Name\n'
-        newWrite.write(headerRow)
-        row = date + ',' + asin + ',' + str(price) + ',' + name
-        newWrite.write(row)
+        writer = csv.writer(newWrite, delimiter=',', lineterminator='\n')
+        writer.writerow(row)
+
+
+def csvAppend(asin, price, name):
+    """ Use this function when a product is already being tracked. It'll
+        append data to an existing csv file. """
+    date = arrow.now().format('YYYY/MM/DD')
+    headers = ['Date', 'ASIN', 'Price', 'Name']
+    row = [date, asin, price, name]
+    with open('CSVs/' + asin + '.csv', 'a') as appendWrite:
+        writer = csv.writer(appendWrite, delimiter=',', lineterminator='\n')
+        writer.writerow(row)
+
 
 
