@@ -8,7 +8,7 @@ from user_agent import generate_user_agent
 from io import BytesIO
 from PIL import Image, ImageTk
 
-# WEB CRAWLER FUNCTIONS
+# *** WEB CRAWLER FUNCTIONS ***
 
 
 def asinGet():
@@ -56,6 +56,7 @@ def priceGetMost(soup):
 
     return price
 
+
 def priceGetSome(soup):
     """ Auxiliary price extraction function. """
     price = soup.find('span', id='priceblock_ourprice', class_='a-size-medium a-color-price')
@@ -84,10 +85,13 @@ def imageGet(soup):
     imgURL = re.findall('https?://.+jpg', img)
     response = requests.get(imgURL[0])
     photo = Image.open(BytesIO(response.content))
-    print(imgURL[0])
+    img = imgURL[0]
+
+    return img
 
 
 def csvWriter(asin, price, name):
+    # NOT USED
     """ Use this function when a product is first looked up. It'll
     create a new csv file to which we can append future data. """
     date = arrow.now().format('YYYY/MM/DD')
