@@ -1,13 +1,12 @@
-from lxml import html
-import csv, os, json
+import csv
 import re
 import requests
 from bs4 import BeautifulSoup as bs
 from user_agent import generate_user_agent
-#from PIL import Image
-#from io import BytesIO
+from io import BytesIO
+from PIL import Image
 
-url = 'https://www.amazon.com/gp/product/B0097UW2Y6'
+url = 'https://www.amazon.com/gp/product/B0722DMYTN'
 
 
 def pageRequest(url):
@@ -54,12 +53,12 @@ def imageGet(soup):
     img = soup.find('img', class_='a-hidden')
     img = str(img)
     imgURL = re.findall('https?://.+jpg', img)
-    #picURL = imgURL[0]
-    #im = Image.open(requests.get(picURL, stream=True).raw)
+    response = requests.get(imgURL)
+    img = Image.open(BytesIO(response.content))
     print(imgURL)
 
 
-
+# **** PROGRAM ****
 soup = pageRequest(url)
 priceGet(soup)
 nameGet(soup)

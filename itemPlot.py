@@ -21,13 +21,13 @@ print(min_value)
 print(avg_value)'''
 # read file
 df = pd.read_csv("B007TY6MK2.csv")
-avgscore = df['Price'].mean()
-hscore = df['Price'].max()
-lscore = df['Price'].min()
+avgPrice = round(df['Price'].mean(), 2)
+hPrice = round(df['Price'].max(), 2)
+lPrice = round(df['Price'].min(), 2)
 
-print(avgscore)
-print(hscore)
-print(lscore)
+print(avgPrice)
+print(hPrice)
+print(lPrice)
 
 
 # ------------- plot section ---------------
