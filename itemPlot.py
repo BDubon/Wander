@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # gets average of ONLY price column
 # read file
-df = pd.read_csv("B007TY6MK2.csv")
+df = pd.read_csv("CSVs/B0769MFR7L.csv")
 avgPrice = round(df['Price'].mean(), 2)
 hPrice = round(df['Price'].max(), 2)
 lPrice = round(df['Price'].min(), 2)
@@ -19,7 +19,7 @@ x = df["Date"]
 y = df["Price"]
 
 # displays graph
-plt.title('Item price over time')
+plt.title('Item Price Over Time')
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.plot(x, y)
