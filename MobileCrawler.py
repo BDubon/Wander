@@ -77,7 +77,7 @@ def imageGet(soup):
 
 
 def csvWriter(asin, price, name):
-    with open(asin + '.csv', 'w') as newWrite:
+    with open('CSVs/' + asin + '.csv', 'w') as newWrite:
         date = arrow.now().format('YYYY/MM/DD')
         headerRow = 'Date,ASIN,Price,Name\n'
         newWrite.write(headerRow)
