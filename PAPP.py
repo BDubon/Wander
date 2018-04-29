@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-from MobileCrawler import asinGet, pageGet, priceGetMost, priceGetSome, nameGet, imageGet, csvWriter, csvAppend
+from MobileCrawler import asinGet, pageGet, priceGetMost, priceGetSome, nameGet, imageGet, csvAppend
 
 """ OUR PROGRAM WILL RUN FROM THIS FILE """
+# To see the functions' code, refer to MobileCrawler.py
 
 # Extract product's ASIN from url
 asin = asinGet()
