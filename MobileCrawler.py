@@ -2,6 +2,7 @@ import csv
 import re
 import requests
 import arrow
+import os.path
 from bs4 import BeautifulSoup as bs
 from user_agent import generate_user_agent
 from io import BytesIO
@@ -37,7 +38,7 @@ def pageGet(asin):
     return soup
 
 
-def priceGet(soup):
+def priceGetMost(soup):
     """ This function extracts the price from a mobile version of a web page. """
     main = soup.find('span', class_='price-large')
     main = main.text
@@ -52,6 +53,16 @@ def priceGet(soup):
     cents = float(cents)
     price = main + cents
     print(price)
+
+    return price
+
+def priceGetSome(soup):
+    """ Auxiliary price extraction function. """
+    price = soup.find('span', id='priceblock_ourprice', class_='a-size-medium a-color-price')
+    price = price.text
+    price = price.strip()
+    price = price.lstrip('$')
+    price = float(price)
 
     return price
 
@@ -81,21 +92,22 @@ def csvWriter(asin, price, name):
     create a new csv file to which we can append future data. """
     date = arrow.now().format('YYYY/MM/DD')
     headers = ['Date', 'ASIN', 'Price', 'Name']
-    row = [date, asin, price, name]
     with open('CSVs/' + asin + '.csv', 'w') as newWrite:
-        writer = csv.writer(newWrite, delimiter=',', lineterminator='\n')
-        writer.writerow(row)
+        writer = csv.writer(newWrite)
 
 
 def csvAppend(asin, price, name):
     """ Use this function when a product is already being tracked. It'll
         append data to an existing csv file. """
-    date = arrow.now().format('YYYY/MM/DD')
+    file_exists = os.path.isfile('CSVs/' + asin + '.csv') # Check if file exists
+    date = arrow.now().format('YYYY/MM/DD HH:mm:ss')
     headers = ['Date', 'ASIN', 'Price', 'Name']
-    row = [date, asin, price, name]
+
     with open('CSVs/' + asin + '.csv', 'a') as appendWrite:
-        writer = csv.writer(appendWrite, delimiter=',', lineterminator='\n')
-        writer.writerow(row)
+        writer = csv.DictWriter(appendWrite, fieldnames=headers, delimiter=',', lineterminator='\n')
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow({'Date': date, 'ASIN': asin, 'Price': price, 'Name': name})
 
 
 
