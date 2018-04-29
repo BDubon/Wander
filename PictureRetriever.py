@@ -1,18 +1,13 @@
-''' tk_ImageTest_url.py
-display an image from a URL using Tkinter, PIL and io
-PIL allows the use of image formats other than gif
-tested with Python27 and Python34  by  vegaseat (dns)  10mar2015
-'''
 import io
 from PIL import Image, ImageTk
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
+import tkinter as tk
+from urllib.request import urlopen
+
+'''
+Display an image from a URL using Tkinter, PIL and io
+'''
+
+
 root = tk.Tk()
 root.title("Show image from URL")
 # find yourself a picture on an internet web page you like
