@@ -1,8 +1,8 @@
 # Project Amazon Price Piranha
 
 
-***INST326 Group Project Proposal***
-### Run the program from PAPP.py
+### INST326 Group Project Proposal
+***Run the program from PAPP.py***
 
 ### Group Members
 - Nicholas Archer
