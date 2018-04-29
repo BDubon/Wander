@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from MobileCrawler import asinGet, pageGet, priceGet, nameGet, imageGet
 
 # Extract product's ASIN from url
