@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-prices = []
-
 # gets average of ONLY price column
 # read file
 df = pd.read_csv("B007TY6MK2.csv")
