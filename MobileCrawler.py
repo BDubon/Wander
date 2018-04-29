@@ -12,7 +12,7 @@ from PIL import Image, ImageTk
 
 
 def asinGet():
-    """ This function extracts the product's unique ASIN. """
+    """ This function extracts the product's unique ASIN from an amazon.com url. """
     url = input('Paste URL: ')
     asin = url.split('/')
     for i in asin:
@@ -99,7 +99,7 @@ def csvWriter(asin, price, name):
 def csvAppend(asin, price, name):
     """ Use this function when a product is already being tracked. It'll
         append data to an existing csv file. """
-    file_exists = os.path.isfile('CSVs/' + asin + '.csv') # Check if file exists
+    file_exists = os.path.isfile('CSVs/' + asin + '.csv')  # Check if file exists
     date = arrow.now().format('YYYY/MM/DD HH:mm:ss')
     headers = ['Date', 'ASIN', 'Price', 'Name']
 
