@@ -6,7 +6,7 @@ from user_agent import generate_user_agent
 from io import BytesIO
 from PIL import Image, ImageTk
 
-url = 'https://www.amazon.com/gp/product/B0722DMYTN'
+url = 'https://www.amazon.com/gp/product/B007TY6MK2'
 
 
 def pageRequest(url):
