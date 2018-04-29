@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from user_agent import generate_user_agent
 from io import BytesIO
-from PIL import Image
+from PIL import Image, ImageTk
 
 url = 'https://www.amazon.com/gp/product/B0722DMYTN'
 
@@ -53,9 +53,10 @@ def imageGet(soup):
     img = soup.find('img', class_='a-hidden')
     img = str(img)
     imgURL = re.findall('https?://.+jpg', img)
-    response = requests.get(imgURL)
-    img = Image.open(BytesIO(response.content))
-    print(imgURL)
+    response = requests.get(imgURL[0])
+    photo = Image.open(BytesIO(response.content))
+    print(imgURL[0])
+
 
 
 # **** PROGRAM ****
