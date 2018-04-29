@@ -4,9 +4,6 @@ from user_agent import generate_user_agent
 import arrow
 
 
-
-# Space Tacos
-
 # URL = 'https://smile.amazon.com/Passengers-Headlight-Headlamp-Replacement-33101-SDA-A01/dp/B007TY6MK2/'
 # Root URL: https://www.amazon.com/gp/product/ + ASIN
 
