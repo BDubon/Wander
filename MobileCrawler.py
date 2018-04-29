@@ -6,14 +6,27 @@ from user_agent import generate_user_agent
 from io import BytesIO
 from PIL import Image, ImageTk
 
-url = 'https://www.amazon.com/gp/product/B007TY6MK2'
+# WEB CRAWLER FUNCTIONS
 
+def asinGet():
+    """ This function extracts the product's unique ASIN. """
+    url = input('Paste URL: ')
+    asin = url.split('/')
+    for i in asin:
+        asinNum = i.strip()
+        if len(asinNum) != 10:
+            continue
+        else:
+            asinN = asinNum
 
-def pageRequest(url):
-    """This function requests a webpage from the URL provided by the user."""
+    return asinN
+
+def pageGet(asin):
+    """ This function requests a webpage from the URL provided by the user. """
     headers = {
         'User-Agent': generate_user_agent(device_type='smartphone')
     }
+    url = 'https://www.amazon.com/gp/product/' + asin
     page = requests.get(url, timeout=5, headers=headers)
     soup = bs(page.text, 'lxml')
     print(page.status_code)
@@ -22,7 +35,7 @@ def pageRequest(url):
 
 
 def priceGet(soup):
-    """This function extracts the price from a mobile version of a web page."""
+    """ This function extracts the price from a mobile version of a web page. """
     main = soup.find('span', class_='price-large')
     main = main.text
     main = main.strip()
@@ -41,7 +54,7 @@ def priceGet(soup):
 
 
 def nameGet(soup):
-    """This function extracts the name from a mobile version of a web page."""
+    """ This function extracts the name from a mobile version of a web page. """
     name = soup.find('span', id='title', class_='a-size-small')
     name = name.text
     name = name.strip()
@@ -50,19 +63,12 @@ def nameGet(soup):
     return name
 
 def imageGet(soup):
+    """ This function extracts the url for the image of the product. """
     img = soup.find('img', class_='a-hidden')
     img = str(img)
     imgURL = re.findall('https?://.+jpg', img)
     response = requests.get(imgURL[0])
     photo = Image.open(BytesIO(response.content))
     print(imgURL[0])
-
-
-
-# **** PROGRAM ****
-soup = pageRequest(url)
-priceGet(soup)
-nameGet(soup)
-imageGet(soup)
 
 
