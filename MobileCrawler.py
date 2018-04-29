@@ -77,6 +77,8 @@ def imageGet(soup):
 
 
 def csvWriter(asin, price, name):
+    """ Use this function when a product is first looked up. It'll
+    create a new csv file to which we can append future data. """
     with open('CSVs/' + asin + '.csv', 'w') as newWrite:
         date = arrow.now().format('YYYY/MM/DD')
         headerRow = 'Date,ASIN,Price,Name\n'
