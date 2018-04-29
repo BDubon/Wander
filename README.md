@@ -2,6 +2,7 @@
 
 
 ***INST326 Group Project Proposal***
+### Run the program from PAPP.py
 
 ### Group Members
 - Nicholas Archer
