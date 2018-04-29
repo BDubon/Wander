@@ -1,12 +1,14 @@
 import csv
 import re
 import requests
+import arrow
 from bs4 import BeautifulSoup as bs
 from user_agent import generate_user_agent
 from io import BytesIO
 from PIL import Image, ImageTk
 
 # WEB CRAWLER FUNCTIONS
+
 
 def asinGet():
     """ This function extracts the product's unique ASIN. """
@@ -20,6 +22,7 @@ def asinGet():
             asinN = asinNum
 
     return asinN
+
 
 def pageGet(asin):
     """ This function requests a webpage from the URL provided by the user. """
@@ -62,6 +65,7 @@ def nameGet(soup):
 
     return name
 
+
 def imageGet(soup):
     """ This function extracts the url for the image of the product. """
     img = soup.find('img', class_='a-hidden')
@@ -70,5 +74,14 @@ def imageGet(soup):
     response = requests.get(imgURL[0])
     photo = Image.open(BytesIO(response.content))
     print(imgURL[0])
+
+
+def csvWriter(asin, price, name):
+    with open(asin + '.csv', 'w') as newWrite:
+        date = arrow.now().format('YYYY/MM/DD')
+        headerRow = 'Date,ASIN,Price,Name\n'
+        newWrite.write(headerRow)
+        row = date + ',' + asin + ',' + str(price) + ',' + name
+        newWrite.write(row)
 
 
