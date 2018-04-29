@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from MobileCrawler import asinGet, pageGet, priceGet, nameGet, imageGet
+from MobileCrawler import asinGet, pageGet, priceGet, nameGet, imageGet, csvWriter
 
 """ OUR PROGRAM WILL RUN FROM THIS FILE """
 
@@ -10,15 +10,16 @@ asin = asinGet()
 soup = pageGet(asin)
 
 # Get price
-priceGet(soup)
+price = priceGet(soup)
 
 # Get product's name
-nameGet(soup)
+name = nameGet(soup)
 
 # Get product's image
 imageGet(soup)
 
 # Write data to CSV
+csvWriter(asin, price, name)
 
 # Plot data from CSV and find max, min, avg
 
