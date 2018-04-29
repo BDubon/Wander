@@ -21,6 +21,7 @@ y = df["Price"]
 # displays graph
 plt.title('Item Price Over Time')
 plt.xlabel('Date')
+plt.xticks(rotation=90, fontsize=8)
 plt.ylabel('Price')
 plt.plot(x, y)
 plt.show()
