@@ -1,7 +1,7 @@
-# Project Amazon Price Piranha
+# Group Project Proposal
 
 
-### INST326 Group Project Proposal
+### INST326 
 ***Run the program from PAPP.py***
 
 ### Group Members
