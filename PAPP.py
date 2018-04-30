@@ -8,8 +8,12 @@ from itemPlot import *
 """
 # --- To see the functions' code, refer to MobileCrawler.py, itemPlot.py --- #
 
-# Extract product's ASIN from url
 url = getURL()
+if 'www.amazon.com/' not in url:
+    print('ERROR: Please enter a valid amazon.com URL.')
+    quit()
+
+# Extract product's ASIN from url
 try:
     asin = asinGet(url)
 except:
@@ -37,7 +41,8 @@ except:
 print('Product Name:', name)
 
 # Get product's image
-imageGet(soup)
+imageURL = imageGet(soup)
+print('IMG url:', imageURL)
 
 # Write data to CSV
 csvAppend(asin, price, name)
