@@ -132,7 +132,6 @@ def imageGet(soup):
     response = requests.get(imgURL[0])
     photo = Image.open(BytesIO(response.content))
     img = imgURL[0]
-    print('IMG Link:', img)
 
     return img
 
