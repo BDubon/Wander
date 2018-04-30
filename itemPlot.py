@@ -23,21 +23,21 @@ def findMax(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     hPrice = round(df['Price'].max(), 2)
-    print(hPrice)
+    print('Highest Price:', hPrice)
 
 
 def findMin(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     lPrice = round(df['Price'].min(), 2)
-    print(lPrice)
+    print('Lowest Price:', lPrice)
 
 
 def findAvg(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     avgPrice = round(df['Price'].mean(), 2)
-    print(avgPrice)
+    print('AVG Price:', avgPrice)
 
 
 
