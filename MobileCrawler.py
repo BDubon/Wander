@@ -10,10 +10,15 @@ from PIL import Image, ImageTk
 
 # *** WEB CRAWLER FUNCTIONS ***
 
-
-def asinGet():
-    """ This function extracts the product's unique ASIN from an amazon.com url. """
+def  getURL():
+    """ Gets user's url. """
     url = input('Paste URL: ')
+
+    return url
+
+
+def asinGet(url):
+    """ This function extracts the product's unique ASIN from an amazon.com url. """
     asin = url.split('/')
     for i in asin:
         asinNum = i.strip()
@@ -25,6 +30,16 @@ def asinGet():
     return asinN
 
 
+def asinGetRX(url):
+    """ For some pages, we extract the ASIN using RegEx. """
+    asin = re.findall('[B].+[?]', url)
+    asin = asin[0]
+    asin = asin.rstrip('?')
+
+    return asin
+
+
+
 def pageGet(asin):
     """ This function requests a webpage from the URL provided by the user. """
     headers = {
@@ -33,7 +48,7 @@ def pageGet(asin):
     url = 'https://www.amazon.com/gp/product/' + asin
     page = requests.get(url, timeout=5, headers=headers)
     soup = bs(page.text, 'lxml')
-    print(page.status_code)
+    print('Page Status:', page.status_code)
 
     return soup
 
@@ -68,12 +83,34 @@ def priceGetSome(soup):
     return price
 
 
+def priceGetDeal(soup):
+    """ Auxiliary price extraction function. Gets price of 'Deal of the Day'. """
+    price = soup.find('td', id='priceblock_dealprice', class_='a-color-price a-size-medium')
+    price = price.text
+    priceList = price.split()
+    price = priceList[0]
+    price = price.strip()
+    price = price.lstrip('$')
+    price = float(price)
+
+    return price
+
+
+def priceGetAll(soup):
+    """ Combines existing functions into a single one. """
+    try:
+        price = priceGetMost(soup)
+    except:
+        price = priceGetSome(soup)
+
+    return price
+
+
 def nameGet(soup):
     """ This function extracts the name from a mobile version of a web page. """
     name = soup.find('span', id='title', class_='a-size-small')
     name = name.text
     name = name.strip()
-    print(name)
 
     return name
 
@@ -81,6 +118,18 @@ def nameGet(soup):
 def imageGet(soup):
     """ This function extracts the url for the image of the product. """
     img = soup.find('img', class_='a-hidden')
+    img = str(img)
+    imgURL = re.findall('https?://.+jpg', img)
+    response = requests.get(imgURL[0])
+    photo = Image.open(BytesIO(response.content))
+    img = imgURL[0]
+    print('IMG Link:', img)
+
+    return img
+
+def imageGetAlt(soup):
+    """ This function extracts the url for the image of the product. """
+    img = soup.find('img', id='main-image', class_='imageLeft0 altImage')
     img = str(img)
     imgURL = re.findall('https?://.+jpg', img)
     response = requests.get(imgURL[0])
@@ -111,7 +160,13 @@ def csvAppend(asin, price, name):
         writer = csv.DictWriter(appendWrite, fieldnames=headers, delimiter=',', lineterminator='\n')
         if not file_exists:
             writer.writeheader()
-        writer.writerow({'Date': date, 'ASIN': asin, 'Price': price, 'Name': name})
+        writer.writerow({'Date': date, 'ASIN': asin, 'Price': price, 'Name': name.encode('utf-8').strip()})
 
 
-
+def asinTracker(asin):
+    asinList = list()
+    asinSet = asinList
+    asinList.append(asin)
+    with open('ASINs.txt', 'a') as f:
+        for i in asinSet:
+            f.write(i + '\n')
