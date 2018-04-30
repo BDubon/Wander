@@ -115,6 +115,15 @@ def nameGet(soup):
     return name
 
 
+def nameGetOther(soup):
+    """ This function extracts the name from a mobile version of a web page. """
+    name = soup.find('h1', id='title', class_='a-size-medium')
+    name = name.text
+    name = name.strip()
+
+    return name
+
+
 def imageGet(soup):
     """ This function extracts the url for the image of the product. """
     img = soup.find('img', class_='a-hidden')
