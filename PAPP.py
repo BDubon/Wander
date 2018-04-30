@@ -30,7 +30,10 @@ except:
 print('Price:', price)
 
 # Get product's name
-name = nameGet(soup)
+try:
+    name = nameGet(soup)
+except:
+    name = nameGetOther(soup)
 print('Product Name:', name)
 
 # Get product's image
