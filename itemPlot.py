@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def plotItem(ASIN):
 
-    df = pd.read_csv(ASIN + ".csv")
+    df = pd.read_csv('CSVs/' + ASIN + ".csv")
 
     # set axis
     x = df["Date"]
@@ -20,29 +20,24 @@ def plotItem(ASIN):
 
 def findMax(ASIN):
 
-    df = pd.read_csv(ASIN + ".csv")
+    df = pd.read_csv('CSVs/' + ASIN + ".csv")
     hPrice = round(df['Price'].max(), 2)
     print(hPrice)
 
 
 def findMin(ASIN):
 
-    df = pd.read_csv(ASIN + ".csv")
+    df = pd.read_csv('CSVs/' + ASIN + ".csv")
     lPrice = round(df['Price'].min(), 2)
     print(lPrice)
 
 
 def findAvg(ASIN):
 
-    df = pd.read_csv(ASIN + ".csv")
+    df = pd.read_csv('CSVs/' + ASIN + ".csv")
     avgPrice = round(df['Price'].mean(), 2)
     print(avgPrice)
 
 
-itemNumber = 'B007TY6MK2'
 
 
-findAvg(itemNumber)
-findMax(itemNumber)
-findMin(itemNumber)
-plotItem(itemNumber)
