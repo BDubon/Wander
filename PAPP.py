@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-from MobileCrawler import asinGet, pageGet, priceGetMost, priceGetSome, nameGet, imageGet, csvAppend
-from itemPlot import plotItem, findMax, findMin, findAvg
+from MobileCrawler import *
+from itemPlot import *
+
 
 """ 
              OUR PROGRAM WILL RUN FROM THIS FILE 
@@ -8,19 +9,29 @@ from itemPlot import plotItem, findMax, findMin, findAvg
 # --- To see the functions' code, refer to MobileCrawler.py, itemPlot.py --- #
 
 # Extract product's ASIN from url
-asin = asinGet()
+url = getURL()
+try:
+    asin = asinGet(url)
+except:
+    asin = asinGetRX(url)
+print('ASIN:', asin)
+
+asinTracker(asin)
 
 # Get HTML code
 soup = pageGet(asin)
 
 # Get price
 try:
-    price = priceGetMost(soup)
+    price = priceGetAll(soup)
 except:
-    price = priceGetSome(soup)
+    price = priceGetDeal(soup)
+
+print('Price:', price)
 
 # Get product's name
 name = nameGet(soup)
+print('Product Name:', name)
 
 # Get product's image
 imageGet(soup)
@@ -29,7 +40,7 @@ imageGet(soup)
 csvAppend(asin, price, name)
 
 # Plot data from CSV and find max, min, avg
-plotItem(asin)
+plotItem(asin, name)
 findMax(asin)
 findMin(asin)
 findAvg(asin)
