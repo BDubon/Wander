@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from textwrap import wrap
 
 
-def plotItem(ASIN):
+def plotItem(ASIN, name):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
 
@@ -10,7 +11,7 @@ def plotItem(ASIN):
     x = df["Date"]
     y = df["Price"]
 
-    plt.title('Item Price Over Time', fontsize=18)
+    plt.title("\n".join(wrap(name, 40)), fontsize=18)
     plt.xlabel('Date', fontsize=14)
     plt.xticks(rotation=90, fontsize=8)
     plt.ylabel('Price ($)', fontsize=14)
