@@ -10,14 +10,27 @@ from PIL import Image, ImageTk
 
 # *** WEB CRAWLER FUNCTIONS ***
 
-def  getURL():
+def  getURL(event):
     """ Gets user's url. """
     url = input('Paste URL: ')
 
     return url
 
+def urlValidator(url):
+    if 'amazon.com/' not in url:
+        print('ERROR: Please enter a valid amazon.com URL.')
+        quit()
+    elif 'smile.amazon.com/' not in url:
+        print('ERROR: Please enter a valid amazon.com URL.')
+        quit()
+    else:
+        validURL = url
 
-def asinGet(url):
+    return url
+
+
+
+def asinGeturl(url):
     """ This function extracts the product's unique ASIN from an amazon.com url. """
     asin = url.split('/')
     for i in asin:
