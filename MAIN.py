@@ -64,20 +64,11 @@ with open(asinN + '.csv', 'w') as newWrite:
     
     
 # GUI- by Fuster
-from tkinter import *
-from tkinter import ttk
-
-
 
 top = Tk()
 E1 = Entry(top, bd =5)
 def userSelection():
-    userChoice = searchNum.get()
-    if userChoice == 1:
-        funcChoice = submitBtn.bind('<Button-1>', electionDates)
-    if userChoice == 2:
-        funcChoice = submitBtn.bind('<Button-1>', candidatesInfo)
-    return funcChoice
+    enterProductbutton.get()
 
 
 L1 = Label(top, text="Product")
