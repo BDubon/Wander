@@ -10,23 +10,21 @@ from PIL import Image, ImageTk
 
 # *** WEB CRAWLER FUNCTIONS ***
 
-def  getURL(event):
-    """ Gets user's url. """
-    url = input('Paste URL: ')
+def getURL():
+    """ Gets user's url. Outputs valid url. """
+    url = input('Pates URL: ')
 
     return url
+
 
 def urlValidator(url):
     if 'amazon.com/' not in url:
         print('ERROR: Please enter a valid amazon.com URL.')
         quit()
-    elif 'smile.amazon.com/' not in url:
-        print('ERROR: Please enter a valid amazon.com URL.')
-        quit()
     else:
         validURL = url
 
-    return url
+    return validURL
 
 
 
