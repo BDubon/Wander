@@ -10,11 +10,15 @@ def plotItem(ASIN, name):
     # set axis
     x = df["Date"]
     y = df["Price"]
+    avgPrice = round(df['Price'].mean(), 2)
 
     plt.title("\n".join(wrap(name, 40)), fontsize=18)
     plt.xlabel('Date', fontsize=14)
     plt.xticks(rotation=90, fontsize=8)
     plt.ylabel('Price ($)', fontsize=14)
+    plt.axhline(avgPrice, color='#d62728')
+    plt.legend(('Average', 'Price'),
+               loc='upper right')
     plt.plot(x, y)
     plt.show()
 
