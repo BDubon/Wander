@@ -5,7 +5,6 @@ from tkinter import ttk
 import io
 from urllib.request import urlopen
 from PIL import Image, ImageTk
-from pandastable import Table, TableModel
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
