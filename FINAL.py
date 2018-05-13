@@ -61,10 +61,7 @@ def fullFunction(event):
     except:
         price = priceGetDeal(soup)
 
-    print('Price:', price)
-    #pulling current price
-    C_price_lab = ttk.Label(root, text=price)
-    C_price_lab.grid(row=3, column=1, padx=5, sticky=E)
+    print('Price: $' + str(price))
 
     # Get product's name
     try:
@@ -73,30 +70,53 @@ def fullFunction(event):
         name = nameGetOther(soup)
     print('Product Name:', name)
 
-    # Get product's image
+    # --- Get product's image ---
     imageURL = imageGet(soup)
-    imgList.append(imageURL)
     print('IMG url:', imageURL)
+    # Insert product's image in GUI
+    picURL = imageURL
+    pageResponse = urlopen(picURL)
+    imageResult = io.BytesIO(pageResponse.read())
+    pilImage = Image.open(imageResult)
+    pilImage = pilImage.resize((120, 100), Image.ANTIALIAS)  # width X Height
+    tk_img = ImageTk.PhotoImage(pilImage)
+    label = ttk.Label(root, image=tk_img)
+    label.grid(row=3, column=11, padx=5, pady=5)
 
     # Write data to CSV
     csvAppend(asin, price, name)
 
-    # Plot data from CSV and find max, min, avg
+    # --- Plot data from CSV and find max, min, avg ---
     maxPrice = findMax(asin)
     minPrice = findMin(asin)
     avgPrice = findAvg(asin)
-    Max_price_lab = ttk.Label(root, text=maxPrice)
-    Max_price_lab.grid(row=3, column=5, padx=5, sticky=E)
-    Min_price_lab = ttk.Label(root, text=minPrice)
-    Min_price_lab.grid(row=3, column=7, padx=5, sticky=E)
-    Avg_price_lab = ttk.Label(root, text=avgPrice)
-    Avg_price_lab.grid(row=3, column=9, padx=5, sticky=E)
+    # Print info to console
     print('Max Price: $' + str(maxPrice))
     print('Min Price: $' + str(minPrice))
     print('Avg Price: $' + str(avgPrice))
     print('')
 
-    plotItem(asin, name)
+    # Insert Data in GUI
+    C_price_lab = ttk.Label(root, text='$' + str(price))
+    C_price_lab.grid(row=3, column=1, padx=3, sticky=W)
+    Max_price_lab = ttk.Label(root, text='$' + str(maxPrice))
+    Max_price_lab.grid(row=3, column=5, padx=3, sticky=W)
+    Min_price_lab = ttk.Label(root, text='$' + str(minPrice))
+    Min_price_lab.grid(row=3, column=7, padx=3, sticky=W)
+    Avg_price_lab = ttk.Label(root, text='$' + str(avgPrice))
+    Avg_price_lab.grid(row=3, column=9, padx=3, sticky=W)
+
+    # --- Chart Area ---
+    f = plotItem(asin, name)
+    a = f.add_subplot(111)
+
+    chart = FigureCanvasTkAgg(f, master=root)
+    chart.draw()
+    chart.get_tk_widget().grid(row=3, column=2, columnspan=3)
+
+    chart._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
+
+    a.plot()
 
     return asin
 
@@ -151,46 +171,29 @@ subMenu.add_command(label="About")
 subMenu.add_command(label='Exit', command=root.quit)
 
 # Picture Display
-if len(imgList) < 2:
-    picURL = imgList[0]
-    pageResponse = urlopen(picURL)
-    imageResult = io.BytesIO(pageResponse.read())
-    pilImage = Image.open(imageResult)
-    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
-    tk_img = ImageTk.PhotoImage(pilImage)
-    label = ttk.Label(root, image=tk_img)
-    label.grid(row=3, column=11, padx=5, pady=5)
-else:
-    picURL = imgList[1]
-    pageResponse = urlopen(picURL)
-    imageResult = io.BytesIO(pageResponse.read())
-    pilImage = Image.open(imageResult)
-    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
-    tk_img = ImageTk.PhotoImage(pilImage)
-    label = ttk.Label(root, image=tk_img)
-    label.grid(row=3, column=11, padx=5, pady=5)
+
+picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG'
+pageResponse = urlopen(picURL)
+imageResult = io.BytesIO(pageResponse.read())
+pilImage = Image.open(imageResult)
+pilImage = pilImage.resize((120, 100), Image.ANTIALIAS)  # width X Height
+tk_img = ImageTk.PhotoImage(pilImage)
+label = ttk.Label(root, image=tk_img)
+label.grid(row=3, column=11, padx=5, pady=5)
 
 # Chart Display
 # a tk.DrawingArea
 f = Figure(figsize=(7, 4), dpi=100)
-a = f.add_subplot(111)
+#a = f.add_subplot(111)
+
+# a.plot()
 
 
-#plt.title("\n".join(wrap(name, 40)), fontsize=18)
-#plt.xlabel('Date', fontsize=14)
-#plt.xticks(rotation=90, fontsize=8)
-#plt.ylabel('Price ($)', fontsize=14)
-#plt.axhline(avgPrice, color='#d62728')
-#plt.legend(('Average', 'Price'),
-           #loc='upper right')
-a.plot()
-
-
-canvas = FigureCanvasTkAgg(f, master=root)
+'''canvas = FigureCanvasTkAgg(f, master=root)
 canvas.draw()
 canvas.get_tk_widget().grid(row=3, column=2, columnspan=3)
 
-canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
+canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)'''
 
 # Chart Toolbar
 #toolbar = NavigationToolbar2Tk(canvas, root)
@@ -200,7 +203,7 @@ canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
 # Quit Button
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
 button.grid(row=5, column=6, pady=5)
-price1=str(price1)
+price1 = str(price1)
 
 
 
