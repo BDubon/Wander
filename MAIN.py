@@ -1,4 +1,4 @@
-#cdef submit():
+# cdef submit():
 from MobileCrawler import *
 from itemPlot import *
 from tkinter import *
@@ -8,11 +8,14 @@ from urllib.request import urlopen
 from PIL import Image, ImageTk
 # from pandastable import Table, TableModel
 import matplotlib
-matplotlib.use('TkAgg')
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-from AutoCrawler import AC
 
+matplotlib.use('TkAgg')
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.figure import Figure
+
+# from AutoCrawler import AC
+
+price1 = 1
 
 
 # Extract product's ASIN from url
@@ -26,12 +29,19 @@ def urlTK(event):
 
     return asin
 
+
 def getURL(event):
     """ Gets user's url. Outputs valid url. """
     url = urlString.get()
     url = urlValidator(url)
 
     return url
+
+
+def removeValue(event):
+    urlBox.delete(0, 'end')
+
+    return None
 
 
 def fullFunction(event):
@@ -56,6 +66,9 @@ def fullFunction(event):
         price = priceGetDeal(soup)
 
     print('Price:', price)
+    # pulling current price
+    C_price_lab = ttk.Label(root, text=price)
+    C_price_lab.grid(row=3, column=1, padx=5, sticky=E)
 
     # Get product's name
     try:
@@ -76,13 +89,20 @@ def fullFunction(event):
     maxPrice = findMax(asin)
     minPrice = findMin(asin)
     avgPrice = findAvg(asin)
-
+    Max_price_lab = ttk.Label(root, text=maxPrice)
+    Max_price_lab.grid(row=3, column=5, padx=5, sticky=E)
+    Min_price_lab = ttk.Label(root, text=minPrice)
+    Min_price_lab.grid(row=3, column=7, padx=5, sticky=E)
+    Avg_price_lab = ttk.Label(root, text=avgPrice)
+    Avg_price_lab.grid(row=3, column=9, padx=5, sticky=E)
     print('Max Price: $' + str(maxPrice))
     print('Min Price: $' + str(minPrice))
     print('Avg Price: $' + str(avgPrice))
     print('')
 
     plotItem(asin, name)
+
+    return asin
 
 
 # GUI- by Fuster
@@ -94,16 +114,15 @@ urlString = StringVar()
 imgUrlString = StringVar()
 imgList = ['https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG']
 
-
 appLabel = Label(root, text="Product")
-urlLabel = ttk.Label(root, text='Paste URL: ')
+urlLabel = ttk.Label(root, text='Enter URL ')
 urlLabel.grid(row=0, column=0, pady=5, sticky=E)
 
 # URL Entry box
 urlBox = ttk.Entry(root, textvariable=urlString)
 urlBox.grid(row=0, column=1, columnspan=12, pady=5, padx=5, sticky=NSEW)
-urlBox.insert(0, '')
-urlBox.bind("<Button-1>", urlBox.delete(0, "end"))
+# urlBox.insert(0, 'Enter Amazon.com URL')
+urlBox.bind("<Button-1>", removeValue)
 
 # URL Submit button
 submitBtn = ttk.Button(root, text='Submit')
@@ -121,7 +140,7 @@ minLabel = ttk.Label(root, text='Min Price: ')
 minLabel.grid(row=3, column=6, sticky=E)
 
 avgLabel = ttk.Label(root, text='AVG Price: ')
-avgLabel.grid(row=3, column=7, sticky=E)
+avgLabel.grid(row=3, column=8, sticky=E)
 
 # Menu Bar
 menu = Menu(root, tearoff=0)
@@ -156,17 +175,32 @@ else:
 # Chart Display
 # a tk.DrawingArea
 f = Figure(figsize=(7, 4), dpi=100)
+a = f.add_subplot(111)
+
+# plt.title("\n".join(wrap(name, 40)), fontsize=18)
+# plt.xlabel('Date', fontsize=14)
+# plt.xticks(rotation=90, fontsize=8)
+# plt.ylabel('Price ($)', fontsize=14)
+# plt.axhline(avgPrice, color='#d62728')
+# plt.legend(('Average', 'Price'),
+# loc='upper right')
+a.plot()
 
 canvas = FigureCanvasTkAgg(f, master=root)
 canvas.draw()
-#canvas.show()
 canvas.get_tk_widget().grid(row=3, column=2, columnspan=3)
 
 canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
 
+# Chart Toolbar
+# toolbar = NavigationToolbar2Tk(canvas, root)
+# toolbar.update()
+# toolbar._tkcanvas.pack(row=5, column=0, columnspan=12, padx=5, pady=3)
+
 # Quit Button
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
 button.grid(row=5, column=6, pady=5)
+price1 = str(price1)
 
 """
 # CSV Display
@@ -183,5 +217,4 @@ pt.show()
 """
 
 root.mainloop()
-
 
