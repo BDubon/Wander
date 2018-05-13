@@ -13,7 +13,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolb
 from matplotlib.figure import Figure
 #from AutoCrawler import AC
 
-
+price1=1
 
 # Extract product's ASIN from url
 def urlTK(event):
@@ -63,6 +63,9 @@ def fullFunction(event):
         price = priceGetDeal(soup)
 
     print('Price:', price)
+    C_price_lab = ttk.Label(root, text=price)
+    # C_price_insert = ttk.INSERT(root, textvariable=C_string)
+    C_price_lab.grid(row=3, column=1, padx=5, sticky=E)
 
     # Get product's name
     try:
@@ -90,7 +93,7 @@ def fullFunction(event):
     print('')
 
     plotItem(asin, name)
-    price1=price
+
     return asin
 
 
@@ -196,9 +199,7 @@ button.grid(row=5, column=6, pady=5)
 price1=str(price1)
 #display current price
 
-C_string = StringVar()
-C_price_entry = canvas.Insert(root, textvariable=C_string)
-C_price_entry.grid( row=3, column=1, padx=5, sticky=E)
+
 """
 # CSV Display
 
