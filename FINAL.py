@@ -196,9 +196,9 @@ button.grid(row=5, column=6, pady=5)
 price1=str(price1)
 #display current price
 
-
-#entry = ttk.Entry.insert(root, 12, "new ")
-#entry.grid( row=3, column=1, padx=5, sticky=E)
+C_string = StringVar()
+C_price_entry = canvas.Insert(root, textvariable=C_string)
+C_price_entry.grid( row=3, column=1, padx=5, sticky=E)
 """
 # CSV Display
 
