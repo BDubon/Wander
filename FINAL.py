@@ -38,7 +38,6 @@ def removeValue(event):
     urlBox.delete(0, 'end')
 
     return None
-price1=1
 
 def fullFunction(event):
     url = getURL(event)
@@ -63,8 +62,8 @@ def fullFunction(event):
         price = priceGetDeal(soup)
 
     print('Price:', price)
+    #pulling current price
     C_price_lab = ttk.Label(root, text=price)
-    # C_price_insert = ttk.INSERT(root, textvariable=C_string)
     C_price_lab.grid(row=3, column=1, padx=5, sticky=E)
 
     # Get product's name
@@ -86,7 +85,12 @@ def fullFunction(event):
     maxPrice = findMax(asin)
     minPrice = findMin(asin)
     avgPrice = findAvg(asin)
-
+    Max_price_lab = ttk.Label(root, text=maxPrice)
+    Max_price_lab.grid(row=3, column=3, padx=5, sticky=E)
+    Min_price_lab = ttk.Label(root, text=minPrice)
+    Min_price_lab.grid(row=3, column=5, padx=5, sticky=E)
+    Avg_price_lab = ttk.Label(root, text=avgPrice)
+    Avg_price_lab.grid(row=3, column=7, padx=5, sticky=E)
     print('Max Price: $' + str(maxPrice))
     print('Min Price: $' + str(minPrice))
     print('Avg Price: $' + str(avgPrice))
@@ -197,7 +201,7 @@ canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
 button.grid(row=5, column=6, pady=5)
 price1=str(price1)
-#display current price
+
 
 
 """
