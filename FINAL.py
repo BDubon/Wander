@@ -86,11 +86,11 @@ def fullFunction(event):
     minPrice = findMin(asin)
     avgPrice = findAvg(asin)
     Max_price_lab = ttk.Label(root, text=maxPrice)
-    Max_price_lab.grid(row=3, column=3, padx=5, sticky=E)
+    Max_price_lab.grid(row=3, column=5, padx=5, sticky=E)
     Min_price_lab = ttk.Label(root, text=minPrice)
-    Min_price_lab.grid(row=3, column=5, padx=5, sticky=E)
+    Min_price_lab.grid(row=3, column=7, padx=5, sticky=E)
     Avg_price_lab = ttk.Label(root, text=avgPrice)
-    Avg_price_lab.grid(row=3, column=7, padx=5, sticky=E)
+    Avg_price_lab.grid(row=3, column=9, padx=5, sticky=E)
     print('Max Price: $' + str(maxPrice))
     print('Min Price: $' + str(minPrice))
     print('Avg Price: $' + str(avgPrice))
@@ -138,7 +138,7 @@ minLabel = ttk.Label(root, text='Min Price: ')
 minLabel.grid(row=3, column=6, sticky=E)
 
 avgLabel = ttk.Label(root, text='AVG Price: ')
-avgLabel.grid(row=3, column=7, sticky=E)
+avgLabel.grid(row=3, column=8, sticky=E)
 
 # Menu Bar
 menu = Menu(root, tearoff=0)
