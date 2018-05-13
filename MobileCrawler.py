@@ -1,3 +1,5 @@
+# Written By Bryan Dubon
+
 import csv
 import re
 import requests
@@ -20,7 +22,7 @@ def getURL():
 def urlValidator(url):
     if 'amazon.com/' not in url:
         print('ERROR: Please enter a valid amazon.com URL.')
-        quit()
+
     else:
         validURL = url
 
@@ -78,7 +80,6 @@ def priceGetMost(soup):
     cents = '.' + cents
     cents = float(cents)
     price = main + cents
-    print(price)
 
     return price
 
