@@ -23,7 +23,8 @@ def plotItem(ASIN, name):
                loc='upper right')
 
     plt.plot(x, y)
-    plt.show()
+    chart = plt.show()
+    return chart
 
 
 
