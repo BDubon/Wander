@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import style
+style.use('ggplot')
 from textwrap import wrap
 
 
@@ -19,29 +21,34 @@ def plotItem(ASIN, name):
     plt.axhline(avgPrice, color='#d62728')
     plt.legend(('Average', 'Price'),
                loc='upper right')
+
     plt.plot(x, y)
     plt.show()
+
 
 
 def findMax(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     hPrice = round(df['Price'].max(), 2)
-    print('Highest Price:', hPrice)
+
+    return hPrice
 
 
 def findMin(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     lPrice = round(df['Price'].min(), 2)
-    print('Lowest Price:', lPrice)
+
+    return lPrice
 
 
 def findAvg(ASIN):
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     avgPrice = round(df['Price'].mean(), 2)
-    print('AVG Price:', avgPrice)
+
+    return avgPrice
 
 
 
