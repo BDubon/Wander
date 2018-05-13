@@ -4,10 +4,11 @@ from MobileCrawler import *
 new_list = []
 with open('ASINs.txt') as asin:
     for line in asin:
+        line = line.strip()
         new_list.append(line)
 
     indiv_asin_set = set(new_list)
-    for asin in indiv_asin_set:
+    for item in indiv_asin_set:
         soup = pageGet(asin)
         # Get price
         try:
@@ -22,4 +23,4 @@ with open('ASINs.txt') as asin:
         except:
             name = nameGetOther(soup)
         print('Product Name:', name)
-        csvAppend(asin, price, name)
+        csvAppend(item, price, name)
