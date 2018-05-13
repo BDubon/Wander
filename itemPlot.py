@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import style
+style.use('ggplot')
 from textwrap import wrap
 
 
@@ -19,6 +21,7 @@ def plotItem(ASIN, name):
     plt.axhline(avgPrice, color='#d62728')
     plt.legend(('Average', 'Price'),
                loc='upper right')
+
     plt.plot(x, y)
     plt.show()
 
