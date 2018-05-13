@@ -38,6 +38,9 @@ def getURL(event):
     url = urlValidator(event, url)
     print(url)
 
+def fullFunction():
+    url = getURL()
+
 
 appLabel = Label(root, text="Product")
 urlLabel = ttk.Label(root, text='Paste URL: ')
