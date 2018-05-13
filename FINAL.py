@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
-from AutoCrawler import AC
+#from AutoCrawler import AC
 
 
 
@@ -38,7 +38,7 @@ def removeValue(event):
     urlBox.delete(0, 'end')
 
     return None
-
+price1=1
 
 def fullFunction(event):
     url = getURL(event)
@@ -51,6 +51,7 @@ def fullFunction(event):
     print('ASIN:', asin)
 
     asinTracker(asin)
+
 
     # Get HTML code
     soup = pageGet(asin)
@@ -89,7 +90,7 @@ def fullFunction(event):
     print('')
 
     plotItem(asin, name)
-
+    price1=price
     return asin
 
 
@@ -121,6 +122,7 @@ submitBtn.grid(row=1, column=6, columnspan=1, sticky=NSEW)
 # Current Price, Max, Min, Avg Labels
 currentLabel = ttk.Label(root, text='Current Price: ')
 currentLabel.grid(row=3, column=0, padx=5, sticky=E)
+
 
 maxLabel = ttk.Label(root, text='Max Price: ')
 maxLabel.grid(row=3, column=4, sticky=E)
@@ -191,8 +193,12 @@ canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
 # Quit Button
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
 button.grid(row=5, column=6, pady=5)
+price1=str(price1)
+#display current price
 
 
+#entry = ttk.Entry.insert(root, 12, "new ")
+#entry.grid( row=3, column=1, padx=5, sticky=E)
 """
 # CSV Display
 
