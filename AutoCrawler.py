@@ -9,7 +9,7 @@ with open('ASINs.txt') as asin:
 
     indiv_asin_set = set(new_list)
     for item in indiv_asin_set:
-        soup = pageGet(asin)
+        soup = pageGet(item)
         # Get price
         try:
             price = priceGetAll(soup)
