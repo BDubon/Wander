@@ -8,7 +8,7 @@ with open('ASINs.txt') as asin:
         new_list.append(line)
 
 indiv_asin_set = set(new_list)
-''' for item in indiv_asin_set:
+for item in indiv_asin_set:
     soup = pageGet(item)
     # Get price
     try:
@@ -24,5 +24,5 @@ indiv_asin_set = set(new_list)
         name = nameGetOther(soup)
     print('Product Name:', name)
     csvAppend(item, price, name)
-'''
-print(indiv_asin_set)
+    print('')
+
