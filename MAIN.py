@@ -187,7 +187,7 @@ submitBtn.grid(row=1, column=6, columnspan=1, sticky=NSEW)
 # Buy Now Button
 buyBtn = ttk.Button(root, text='Buy Now!')
 buyBtn.bind('<Button-1>', buyNowTK)
-buyBtn.grid(row=4, column=11, sticky=NSEW)
+buyBtn.grid(row=4, column=11, padx=5, sticky=NSEW)
 
 # Current Price, Max, Min, Avg Labels
 currentLabel = ttk.Label(root, text='Current Price: ')
