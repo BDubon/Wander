@@ -1,3 +1,4 @@
+
 ---
 layout: default
 --- 
@@ -14,6 +15,8 @@ layout: default
 #### 1. Download the entire project from git. 
 
 #### 2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors. 
+
+#### 4. Run File from MAIN.py
 
 #### 3. Your good to go!
 
