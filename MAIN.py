@@ -1,3 +1,4 @@
+# Written by Nicolas Fuster
 from MobileCrawler import *
 from itemPlot import *
 from tkinter import *
