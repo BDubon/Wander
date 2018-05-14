@@ -2,7 +2,7 @@
 
 
 ### INST326 
-***Run the program from PAPP.py***
+***Run the program from MAIN.py***
 
 ### Group Members
 - Nicholas Archer
