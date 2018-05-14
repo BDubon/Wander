@@ -3,14 +3,13 @@
 layout: default
 --- 
 
-
 # Welcome to Wander!
 
 ## The Amazon Web Crawler. 
 
 ### Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
 
-
+[Home Page](./)
 
 #### 1. Download the entire project from git. 
 
@@ -71,3 +70,6 @@ layout: default
 ### 6. Quit
 
   - This button exits the application 
+  
+  
+ [Home Page](./)
