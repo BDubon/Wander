@@ -1,24 +1,23 @@
  
+# Welcome to Wander!
 
-  Welcome to Wander!
+## The Amazon Web Crawler. 
 
-The Amazon Web Crawler. 
-
-Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
-
-
-
-1. Download the entire project from git. 
-
-2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors. 
-
-3. Your good to go!
-
-  Note: this program uses MS excel to display CSVs
+### Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
 
 
 
-Wander has various functions. Below is a list of the functions you will encounter. 
+#### 1. Download the entire project from git. 
+
+#### 2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors. 
+
+#### 3. Your good to go!
+
+  ***Note: this program uses MS excel to display CSVs***
+
+
+
+## Wander has various functions. Below is a list of the functions you will encounter. 
 
 
 
