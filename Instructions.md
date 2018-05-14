@@ -1,4 +1,8 @@
- 
+---
+layout: default
+--- 
+
+
 # Welcome to Wander!
 
 ## The Amazon Web Crawler. 
