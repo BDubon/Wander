@@ -7,7 +7,7 @@
 ### Here at Wander, we like our users to have a clean user expierence. 
 ### Below are some steps for setting up your Wander application.
 
-#### ***1. Download the entire project from git.*** 
+#### ***1. Download the entire project from GitHub.*** 
 
 #### ***2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors.*** 
 
