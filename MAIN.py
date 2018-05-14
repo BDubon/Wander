@@ -1,3 +1,4 @@
+
 from MobileCrawler import *
 from itemPlot import *
 from tkinter import *
@@ -60,9 +61,13 @@ def buyNowTK(event):
 
 
 def webInstructionsTK():
-    """ Opens product's pagen when 'Buy Now!' button is pressed. """
-    webbrowser.open('AmazonCrawler.tk')
+    """ Opens project's 'Instructions' web page. """
+    webbrowser.open('https://bdubon.github.io/Group_Project_326/Instructions.html')
 
+
+def webAboutTK():
+    """ Opens project's 'About' web page. """
+    webbrowser.open('https://bdubon.github.io/Group_Project_326/')
 
 def removeValueTK(event):
     """ Clears entry box """
@@ -72,8 +77,7 @@ def removeValueTK(event):
 
 
 def showCsvTK():
-    """ This function opens a .txt file that contains information and instructions
-        #about the program. """
+    """ This function opens the csv file for the last product searched by the user. """
     num = asin
     filename = Path('CSVs/' + num + '.csv')
     webbrowser.open(filename.absolute().as_uri())
@@ -81,6 +85,7 @@ def showCsvTK():
 
 
 def fullFunction(event):
+    """ This function collects all the data when the 'Submit' button in the GUI is pressed. """
     global asin
     global url
     url = getURL(event)
@@ -94,11 +99,10 @@ def fullFunction(event):
 
     asinTracker(asin)
 
-
-    # Get HTML code
+    # --- Get HTML code ---
     soup = pageGet(asin)
 
-    # Get price
+    # --- Get price ---
     try:
         price = priceGetAll(soup)
     except:
@@ -106,7 +110,7 @@ def fullFunction(event):
 
     print('Price: $' + str(price))
 
-    # Get product's name
+    # --- Get product's name ---
     try:
         name = nameGet(soup)
     except:
@@ -206,15 +210,18 @@ avgLabel.grid(row=3, column=8, sticky=E)
 # Menu Bar
 menu = Menu(root, tearoff=0)
 root.config(menu=menu)
-# Submenu
+
+# --- Submenu ---
+# Tools Submenu
 subMenuTools = Menu(menu)
 menu.add_cascade(label='Tools', menu=subMenuTools)
 subMenuTools.add_command(label='Update Database...', command=AC)
 subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
+# Help Submenu
 subMenuHelp = Menu(menu)
 menu.add_cascade(label='Help', menu=subMenuHelp)
-subMenuHelp.add_command(label='About', command=webInstructionsTK)
+subMenuHelp.add_command(label='About', command=webAboutTK)
 subMenuHelp.add_command(label='Instructions', command=webInstructionsTK)
 subMenuHelp.add_command(label='Exit', command=root.quit)
 
