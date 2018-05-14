@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Wander Project Description 
 
 ## [Instructions](./Instructions.md)
