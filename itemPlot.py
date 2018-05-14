@@ -22,9 +22,8 @@ def plotItem(ASIN, name):
     plt.legend(('Average', 'Price'),
                loc='upper right')
 
-    plt.plot(x, y)
-    chart = plt.show()
-    return chart
+    plt.plot(x, y, color='blue')
+    plt.show()
 
 
 
