@@ -1,6 +1,6 @@
 # Group Project Proposal
 
-## [Instructions](./Instructions.md).
+## [Instructions](./Instructions.md)
 
 
 ### INST326 
