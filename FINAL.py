@@ -214,7 +214,7 @@ subMenuTools.add_command(label='Update Database...', command=AC)
 subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
 subMenuHelp = Menu(menu)
-menu.add_cascade(label='About', menu=subMenuHelp)
+menu.add_cascade(label='Help', menu=subMenuHelp)
 subMenuHelp.add_command(label='About', command=webInstructionsTK)
 subMenuHelp.add_command(label='Instructions', command=webInstructionsTK)
 subMenuHelp.add_command(label='Exit', command=root.quit)
