@@ -1,4 +1,3 @@
-# cdef submit():
 from MobileCrawler import *
 from itemPlot import *
 from tkinter import *
@@ -8,18 +7,22 @@ from urllib.request import urlopen
 from PIL import Image, ImageTk
 # from pandastable import Table, TableModel
 import matplotlib
-
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
-
-# from AutoCrawler import AC
+import webbrowser
+from AutoCrawler import AC
+from pathlib import Path
 
 price1 = 1
+new = 1
+
+asin = None
 
 
 # Extract product's ASIN from url
 def urlTK(event):
+    """Gets user's url from GUI entry box."""
     url = urlBox.get()
     try:
         asin = asinGeturl(url)
@@ -38,13 +41,48 @@ def getURL(event):
     return url
 
 
-def removeValue(event):
+def displayImageTK(localIMG):
+    """ Loads product's image from an url and inserts in GUI. """
+    picURL = localIMG
+    pageResp = urlopen(picURL)
+    imageRes = io.BytesIO(pageResp.read())
+    pilImg = Image.open(imageRes)
+    pilImg = pilImg.resize((120, 100), Image.ANTIALIAS)  # width X Height
+    tkImg = ImageTk.PhotoImage(pilImg)
+    label2 = ttk.Label(root, image=tkImg)
+    label2.grid(row=3, column=11, padx=5, pady=5)
+
+
+def buyNowTK(event):
+    """ Opens product's pagen when 'Buy Now!' button is pressed. """
+    localurl = url
+    webbrowser.open(localurl)
+
+
+def webInstructionsTK():
+    """ Opens product's pagen when 'Buy Now!' button is pressed. """
+    webbrowser.open('AmazonCrawler.tk')
+
+
+def removeValueTK(event):
+    """ Clears entry box """
     urlBox.delete(0, 'end')
 
     return None
 
 
+def showCsvTK():
+    """ This function opens a .txt file that contains information and instructions
+        #about the program. """
+    num = asin
+    filename = Path('CSVs/' + num + '.csv')
+    webbrowser.open(filename.absolute().as_uri())
+    #os.system('start ' + num + '.csv')
+
+
 def fullFunction(event):
+    global asin
+    global url
     url = getURL(event)
     print(url)
     # Extract product's ASIN from url
@@ -56,6 +94,7 @@ def fullFunction(event):
 
     asinTracker(asin)
 
+
     # Get HTML code
     soup = pageGet(asin)
 
@@ -65,10 +104,7 @@ def fullFunction(event):
     except:
         price = priceGetDeal(soup)
 
-    print('Price:', price)
-    # pulling current price
-    C_price_lab = ttk.Label(root, text=price)
-    C_price_lab.grid(row=3, column=1, padx=5, sticky=E)
+    print('Price: $' + str(price))
 
     # Get product's name
     try:
@@ -77,46 +113,58 @@ def fullFunction(event):
         name = nameGetOther(soup)
     print('Product Name:', name)
 
-    # Get product's image
+    # --- Get product's image ---
     imageURL = imageGet(soup)
     print('IMG url:', imageURL)
-    # Picture Display
+    # Insert product's image in GUI
     picURL = imageURL
-    pageResponse = urlopen(picURL)
-    imageResult = io.BytesIO(pageResponse.read())
-    pilImage = Image.open(imageResult)
-    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
-    tk_img = ImageTk.PhotoImage(pilImage)
-    label = ttk.Label(root, image=tk_img)
-    label.grid(row=3, column=11, padx=5, pady=5)
+    pageResp = urlopen(picURL)
+    imageRes = io.BytesIO(pageResp.read())
+    pilImg = Image.open(imageRes)
+    pilImg = pilImg.resize((120, 100), Image.ANTIALIAS)  # width X Height
+    tkImg = ImageTk.PhotoImage(pilImg)
+    label2 = ttk.Label(root, image=tkImg)
+    label2.grid(row=3, column=11, padx=5, pady=5)
 
     # Write data to CSV
     csvAppend(asin, price, name)
 
-    # Plot data from CSV and find max, min, avg
+    # --- Plot data from CSV and find max, min, avg ---
     maxPrice = findMax(asin)
     minPrice = findMin(asin)
     avgPrice = findAvg(asin)
-    Max_price_lab = ttk.Label(root, text=maxPrice)
-    Max_price_lab.grid(row=3, column=5, padx=5, sticky=E)
-    Min_price_lab = ttk.Label(root, text=minPrice)
-    Min_price_lab.grid(row=3, column=7, padx=5, sticky=E)
-    Avg_price_lab = ttk.Label(root, text=avgPrice)
-    Avg_price_lab.grid(row=3, column=9, padx=5, sticky=E)
+    # Print info to console
     print('Max Price: $' + str(maxPrice))
     print('Min Price: $' + str(minPrice))
     print('Avg Price: $' + str(avgPrice))
     print('')
 
-    plotItem(asin, name)
+    # Buy Now Button
+    buyBtn = ttk.Button(root, text='Buy Now!')
+    buyBtn.bind('<Button-1>', buyNowTK)
+    buyBtn.grid(row=4, column=11, sticky=NSEW)
 
-    return asin
+    # Insert Data in GUI
+    C_price_lab = ttk.Label(root, text='$' + str(price))
+    C_price_lab.grid(row=3, column=1, padx=3, sticky=W)
+    Max_price_lab = ttk.Label(root, text='$' + str(maxPrice))
+    Max_price_lab.grid(row=3, column=5, padx=3, sticky=W)
+    Min_price_lab = ttk.Label(root, text='$' + str(minPrice))
+    Min_price_lab.grid(row=3, column=7, padx=3, sticky=W)
+    Avg_price_lab = ttk.Label(root, text='$' + str(avgPrice))
+    Avg_price_lab.grid(row=3, column=9, padx=3, sticky=W)
+
+
+    # --- Chart Area ---
+    plotItem(asin, name)
 
 
 # GUI- by Fuster
 
 root = Tk()
-root.title("Wander")
+root.title("Wander - Amazon.com Scraper")
+# Window Icon
+root.iconbitmap('images/Wander-Logo.ico')
 
 urlString = StringVar()
 imgUrlString = StringVar()
@@ -128,17 +176,23 @@ urlLabel.grid(row=0, column=0, pady=5, sticky=E)
 # URL Entry box
 urlBox = ttk.Entry(root, textvariable=urlString)
 urlBox.grid(row=0, column=1, columnspan=12, pady=5, padx=5, sticky=NSEW)
-# urlBox.insert(0, 'Enter Amazon.com URL')
-urlBox.bind("<Button-1>", removeValue)
+urlBox.insert(0, 'Enter Amazon.com URL')
+urlBox.bind("<Button-1>", removeValueTK)
 
 # URL Submit button
 submitBtn = ttk.Button(root, text='Submit')
 submitBtn.bind('<Button-1>', fullFunction)
 submitBtn.grid(row=1, column=6, columnspan=1, sticky=NSEW)
 
+# Buy Now Button
+buyBtn = ttk.Button(root, text='Buy Now!')
+buyBtn.bind('<Button-1>', buyNowTK)
+buyBtn.grid(row=4, column=11, sticky=NSEW)
+
 # Current Price, Max, Min, Avg Labels
 currentLabel = ttk.Label(root, text='Current Price: ')
 currentLabel.grid(row=3, column=0, padx=5, sticky=E)
+
 
 maxLabel = ttk.Label(root, text='Max Price: ')
 maxLabel.grid(row=3, column=4, sticky=E)
@@ -153,41 +207,41 @@ avgLabel.grid(row=3, column=8, sticky=E)
 menu = Menu(root, tearoff=0)
 root.config(menu=menu)
 # Submenu
-subMenu = Menu(menu)
-menu.add_cascade(label='Help', menu=subMenu)
-subMenu.add_command(label="Instructions")
-subMenu.add_command(label="About")
-subMenu.add_command(label='Exit', command=root.quit)
+subMenuTools = Menu(menu)
+menu.add_cascade(label='Tools', menu=subMenuTools)
+subMenuTools.add_command(label='Update Database...', command=AC)
+subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
-# Picture Display
-picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG'
+subMenuHelp = Menu(menu)
+menu.add_cascade(label='About', menu=subMenuHelp)
+subMenuHelp.add_command(label='About', command=webInstructionsTK)
+subMenuHelp.add_command(label='Instructions', command=webInstructionsTK)
+subMenuHelp.add_command(label='Exit', command=root.quit)
+
+
+# Initial Picture (logo) Display
+picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/images/Wander%20Logo.JPG'
 pageResponse = urlopen(picURL)
 imageResult = io.BytesIO(pageResponse.read())
 pilImage = Image.open(imageResult)
-pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
+pilImage = pilImage.resize((120, 100), Image.ANTIALIAS)  # width X Height
 tk_img = ImageTk.PhotoImage(pilImage)
 label = ttk.Label(root, image=tk_img)
 label.grid(row=3, column=11, padx=5, pady=5)
 
 # Chart Display
 # a tk.DrawingArea
+# --- Chart Area ---
 f = Figure(figsize=(7, 4), dpi=100)
 a = f.add_subplot(111)
-
-# plt.title("\n".join(wrap(name, 40)), fontsize=18)
-# plt.xlabel('Date', fontsize=14)
-# plt.xticks(rotation=90, fontsize=8)
-# plt.ylabel('Price ($)', fontsize=14)
-# plt.axhline(avgPrice, color='#d62728')
-# plt.legend(('Average', 'Price'),
-# loc='upper right')
-a.plot()
 
 canvas = FigureCanvasTkAgg(f, master=root)
 canvas.draw()
 canvas.get_tk_widget().grid(row=3, column=2, columnspan=3)
 
-canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
+canvas._tkcanvas.grid(row=5, column=0, columnspan=12, padx=5)
+
+a.plot()
 
 # Chart Toolbar
 # toolbar = NavigationToolbar2Tk(canvas, root)
@@ -196,22 +250,8 @@ canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)
 
 # Quit Button
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
-button.grid(row=5, column=6, pady=5)
-price1 = str(price1)
+button.grid(row=6, column=6, pady=5)
 
-"""
-# CSV Display
-
-t = Frame(root)
-pt = Table(t)
-#pt.importCSV('CSVs/B06XWMBGWN.csv')
-df = TableModel.getSampleData('CSVs/B06XWMBGWN.csv')
-table = pt = Table(t, dataframe=df,
-                   showtoolbar=True,
-                   showstatusbar=True)
-pt.grid(row=4, column=0, padx=5, pady=5)
-pt.show()
-"""
 
 root.mainloop()
 
