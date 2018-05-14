@@ -210,7 +210,7 @@ root.config(menu=menu)
 # Submenu
 subMenuTools = Menu(menu)
 menu.add_cascade(label='Tools', menu=subMenuTools)
-subMenuTools.add_command(label='Update Database', command=AC)
+subMenuTools.add_command(label='Update Database...', command=AC)
 subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
 subMenuHelp = Menu(menu)
@@ -244,13 +244,6 @@ canvas._tkcanvas.grid(row=5, column=0, columnspan=12, padx=5)
 
 a.plot()
 
-
-'''canvas = FigureCanvasTkAgg(f, master=root)
-canvas.draw()
-canvas.get_tk_widget().grid(row=3, column=2, columnspan=3)
-
-canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)'''
-
 # Chart Toolbar
 # toolbar = NavigationToolbar2Tk(canvas, root)
 # toolbar.update()
@@ -260,19 +253,6 @@ canvas._tkcanvas.grid(row=4, column=0, columnspan=12, padx=5)'''
 button = ttk.Button(master=root, text='Quit', command=sys.exit)
 button.grid(row=6, column=6, pady=5)
 
-"""
-# CSV Display
-
-t = Frame(root)
-pt = Table(t)
-#pt.importCSV('CSVs/B06XWMBGWN.csv')
-df = TableModel.getSampleData('CSVs/B06XWMBGWN.csv')
-table = pt = Table(t, dataframe=df,
-                   showtoolbar=True,
-                   showstatusbar=True)
-pt.grid(row=4, column=0, padx=5, pady=5)
-pt.show()
-"""
 
 root.mainloop()
 
