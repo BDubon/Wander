@@ -3,11 +3,8 @@
 layout: default
 --- 
 
-# Welcome to Wander!
+# Instructions
 
-## The Amazon Web Crawler. 
-
-### Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
 
 #### [Home Page](./)
 
