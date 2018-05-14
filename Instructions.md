@@ -7,13 +7,13 @@
 ### Here at Wander, we like our users to have a clean user expierence. 
 ### Below are some steps for setting up your Wander application.
 
-#### 1. Download the entire project from git. 
+#### ***1. Download the entire project from git.*** 
 
-#### 2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors. 
+#### ***2. Use our embedded project interepretter so pycharm doesnt give you any sill import errors.*** 
 
-#### 4. Run File from MAIN.py
+#### ***4. Run File from MAIN.py***
 
-#### 3. You're good to go!
+#### ***3. You're good to go!***
 
   ***Note: this program uses MS excel to display CSVs***
 
