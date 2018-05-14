@@ -1,4 +1,4 @@
-# Group Project Proposal
+# Wander Project Description 
 
 ## [Instructions](./Instructions.md)
 
