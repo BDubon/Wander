@@ -16,6 +16,7 @@ from pathlib import Path
 
 price1 = 1
 new = 1
+
 asin = None
 
 
@@ -80,8 +81,6 @@ def showCsvTK():
 
 
 def fullFunction(event):
-    """ When called by the submit button in the GUI, this function performs all operations
-    required to get the data and enables other functionalities."""
     global asin
     global url
     url = getURL(event)
@@ -155,12 +154,13 @@ def fullFunction(event):
     Avg_price_lab = ttk.Label(root, text='$' + str(avgPrice))
     Avg_price_lab.grid(row=3, column=9, padx=3, sticky=W)
 
+
     # --- Chart Area ---
     plotItem(asin, name)
 
 
-""" The code below creates the GUI and enable our functions to be called
-according to the button that's linked to them. """
+# GUI- by Fuster
+
 root = Tk()
 root.title("Wander - Amazon.com Scraper")
 # Window Icon
@@ -213,7 +213,7 @@ subMenuTools.add_command(label='Update Database...', command=AC)
 subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
 subMenuHelp = Menu(menu)
-menu.add_cascade(label='About', menu=subMenuHelp)
+menu.add_cascade(label='Help', menu=subMenuHelp)
 subMenuHelp.add_command(label='About', command=webInstructionsTK)
 subMenuHelp.add_command(label='Instructions', command=webInstructionsTK)
 subMenuHelp.add_command(label='Exit', command=root.quit)
@@ -254,4 +254,3 @@ button.grid(row=6, column=6, pady=5)
 
 
 root.mainloop()
-
