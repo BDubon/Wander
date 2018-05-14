@@ -20,6 +20,7 @@ def getURL():
 
 
 def urlValidator(url):
+    """ This function makes sure the link is an amazon.com link. """
     if 'amazon.com/' not in url:
         print('ERROR: Please enter a valid amazon.com URL.')
 
@@ -184,6 +185,7 @@ def csvAppend(asin, price, name):
 
 
 def asinTracker(asin):
+    """ This function writes the ASIN of the product in a .txt file """
     with open('ASINs.txt', 'a') as f:
         f.write(asin + '\n')
 
