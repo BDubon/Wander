@@ -79,8 +79,16 @@ def fullFunction(event):
 
     # Get product's image
     imageURL = imageGet(soup)
-    imgList.append(imageURL)
     print('IMG url:', imageURL)
+    # Picture Display
+    picURL = imageURL
+    pageResponse = urlopen(picURL)
+    imageResult = io.BytesIO(pageResponse.read())
+    pilImage = Image.open(imageResult)
+    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
+    tk_img = ImageTk.PhotoImage(pilImage)
+    label = ttk.Label(root, image=tk_img)
+    label.grid(row=3, column=11, padx=5, pady=5)
 
     # Write data to CSV
     csvAppend(asin, price, name)
@@ -112,7 +120,6 @@ root.title("Wander")
 
 urlString = StringVar()
 imgUrlString = StringVar()
-imgList = ['https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG']
 
 appLabel = Label(root, text="Product")
 urlLabel = ttk.Label(root, text='Enter URL ')
@@ -153,24 +160,14 @@ subMenu.add_command(label="About")
 subMenu.add_command(label='Exit', command=root.quit)
 
 # Picture Display
-if len(imgList) < 2:
-    picURL = imgList[0]
-    pageResponse = urlopen(picURL)
-    imageResult = io.BytesIO(pageResponse.read())
-    pilImage = Image.open(imageResult)
-    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
-    tk_img = ImageTk.PhotoImage(pilImage)
-    label = ttk.Label(root, image=tk_img)
-    label.grid(row=3, column=11, padx=5, pady=5)
-else:
-    picURL = imgList[1]
-    pageResponse = urlopen(picURL)
-    imageResult = io.BytesIO(pageResponse.read())
-    pilImage = Image.open(imageResult)
-    pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
-    tk_img = ImageTk.PhotoImage(pilImage)
-    label = ttk.Label(root, image=tk_img)
-    label.grid(row=3, column=11, padx=5, pady=5)
+picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG'
+pageResponse = urlopen(picURL)
+imageResult = io.BytesIO(pageResponse.read())
+pilImage = Image.open(imageResult)
+pilImage = pilImage.resize((100, 100), Image.ANTIALIAS)  # width X Height
+tk_img = ImageTk.PhotoImage(pilImage)
+label = ttk.Label(root, image=tk_img)
+label.grid(row=3, column=11, padx=5, pady=5)
 
 # Chart Display
 # a tk.DrawingArea
