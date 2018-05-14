@@ -1,4 +1,8 @@
-# Wander Project Description 
+# Welcome to Wander!
+
+## The Amazon Web Crawler. 
+
+### Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
 
 ## [Instructions](./Instructions.md)
 
