@@ -1,3 +1,5 @@
+""""File by: Byron Cantillano"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -6,6 +8,9 @@ from textwrap import wrap
 
 
 def plotItem(ASIN, name):
+    """""This function reads the CSV file of the item
+    and makes a graph displaying the prices over time
+    along with the average price  """
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
 
@@ -28,6 +33,7 @@ def plotItem(ASIN, name):
 
 
 def findMax(ASIN):
+    """" Function finds the max price of the item from the csv file"""
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     hPrice = round(df['Price'].max(), 2)
@@ -36,6 +42,7 @@ def findMax(ASIN):
 
 
 def findMin(ASIN):
+    """" Function finds the lowest price of the item from the csv file"""
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     lPrice = round(df['Price'].min(), 2)
@@ -44,6 +51,7 @@ def findMin(ASIN):
 
 
 def findAvg(ASIN):
+    """" Function finds the average price of the item from the csv file"""
 
     df = pd.read_csv('CSVs/' + ASIN + ".csv")
     avgPrice = round(df['Price'].mean(), 2)

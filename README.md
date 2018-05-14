@@ -1,8 +1,13 @@
-# Group Project Proposal
+# Welcome to Wander!
+
+## The Amazon Web Crawler. 
+
+## [Instructions](./Instructions.md)
 
 
 ### INST326 
 ***Run the program from MAIN.py***
+
 
 ### Group Members
 - Nicholas Archer
