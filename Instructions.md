@@ -17,7 +17,7 @@ layout: default
 
 #### 4. Run File from MAIN.py
 
-#### 3. Your good to go!
+#### 3. You're good to go!
 
   ***Note: this program uses MS excel to display CSVs***
 
@@ -33,9 +33,9 @@ layout: default
 
   - Now a graph will apear showing you visually the current and average price.
 
-  - you will also be able to see avergae, current, max, and min prices aswell. If you have aleardy ran this url, you can see your historical data.
+  - you will also be able to see average, current, max, and min prices as well. If you have aleardy ran this url, you can see your historical data.
 
-  - Most importantly after pasting a url, a csv will be created and now can be added to by updating databases 
+  - Most importantly after pasting a url, a csv file will be created and now can be added to by updating databases (Tools > Update Database...) 
 
 ### 2. Update Databases
 
