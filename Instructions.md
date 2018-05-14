@@ -1,4 +1,5 @@
 
+
 #### [Home Page](./)
 
 # Instructions
@@ -41,6 +42,8 @@
   - After running update your csvs will contain the most current price
 
   - You can set this function up with windows task scheduler and start scheduling data collection
+  
+  - Program will become unresponsive for a short time, as it iterates through the product pages 
 
 ### 3. Buy it Now
 
