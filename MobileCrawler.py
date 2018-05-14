@@ -184,9 +184,9 @@ def csvAppend(asin, price, name):
 
 
 def asinTracker(asin):
-    asinList = list()
-    asinSet = asinList
-    asinList.append(asin)
     with open('ASINs.txt', 'a') as f:
-        for i in asinSet:
-            f.write(i + '\n')
+        f.write(asin + '\n')
+
+
+
+
