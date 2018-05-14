@@ -9,7 +9,7 @@ layout: default
 
 ### Here at Wander, we like our users to have a clean user expierence. Below are some steps for setting up your Wander application.
 
-[Home Page](./)
+#### [Home Page](./)
 
 #### 1. Download the entire project from git. 
 
@@ -72,4 +72,4 @@ layout: default
   - This button exits the application 
   
   
- [Home Page](./)
+ #### [Home Page](./)
