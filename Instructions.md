@@ -1,8 +1,4 @@
 
----
-layout: default
---- 
-
 # Instructions
 
 ### Here at Wander, we like our users to have a clean user expierence. 
