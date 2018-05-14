@@ -40,7 +40,7 @@
 
 ### 2. Update Databases
 
-  - Under the tools section in the top left corner lives update databases
+  - Under the tools section in the top left corner lives 'Update Databases...'
 
   - Here you can run all of your autocrawler which will run through the existing CSVs
 
