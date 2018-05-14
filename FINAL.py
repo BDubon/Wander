@@ -13,9 +13,12 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolb
 from matplotlib.figure import Figure
 import webbrowser
 from AutoCrawler import AC
+from pathlib import Path
 
 price1 = 1
 new = 1
+
+asin = None
 
 
 # Extract product's ASIN from url
@@ -51,9 +54,10 @@ def displayImageTK(localIMG):
     label2.grid(row=3, column=11, padx=5, pady=5)
 
 
-def buyNowTK():
+def buyNowTK(event):
     """ Opens product's pagen when 'Buy Now!' button is pressed. """
-    webbrowser.open()
+    localurl = url
+    webbrowser.open(localurl)
 
 
 def webInstructionsTK():
@@ -68,7 +72,18 @@ def removeValueTK(event):
     return None
 
 
+def showCsvTK():
+    """ This function opens a .txt file that contains information and instructions
+        #about the program. """
+    num = asin
+    filename = Path('CSVs/' + num + '.csv')
+    webbrowser.open(filename.absolute().as_uri())
+    #os.system('start ' + num + '.csv')
+
+
 def fullFunction(event):
+    global asin
+    global url
     url = getURL(event)
     print(url)
     # Extract product's ASIN from url
@@ -140,6 +155,7 @@ def fullFunction(event):
     Avg_price_lab = ttk.Label(root, text='$' + str(avgPrice))
     Avg_price_lab.grid(row=3, column=9, padx=3, sticky=W)
 
+
     # --- Chart Area ---
     plotItem(asin, name)
 
@@ -148,6 +164,8 @@ def fullFunction(event):
 
 root = Tk()
 root.title("Wander - Amazon.com Scraper")
+# Window Icon
+root.iconbitmap('images/Wander-Logo.ico')
 
 urlString = StringVar()
 imgUrlString = StringVar()
@@ -193,16 +211,17 @@ root.config(menu=menu)
 subMenuTools = Menu(menu)
 menu.add_cascade(label='Tools', menu=subMenuTools)
 subMenuTools.add_command(label='Update Database', command=AC)
+subMenuTools.add_command(label='Show CSV...', command=showCsvTK)
 
 subMenuHelp = Menu(menu)
 menu.add_cascade(label='About', menu=subMenuHelp)
+subMenuHelp.add_command(label='About', command=webInstructionsTK)
 subMenuHelp.add_command(label='Instructions', command=webInstructionsTK)
-subMenuHelp.add_command(label='About')
 subMenuHelp.add_command(label='Exit', command=root.quit)
 
 
 # Initial Picture (logo) Display
-picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/Wander%20Logo.JPG'
+picURL = 'https://raw.githubusercontent.com/BDubon/Group_Project_326/master/images/Wander%20Logo.JPG'
 pageResponse = urlopen(picURL)
 imageResult = io.BytesIO(pageResponse.read())
 pilImage = Image.open(imageResult)
