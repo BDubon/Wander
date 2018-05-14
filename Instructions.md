@@ -32,6 +32,11 @@
   - you will also be able to see average, current, max, and min prices as well. If you have aleardy ran this url, you can see your historical data.
 
   - Most importantly after pasting a url, a csv file will be created and now can be added to by updating databases (Tools > Update Database...) 
+  
+  #### Use these URLs to see the historical data of these products:
+      - https://www.amazon.com/gp/product/B01LXLTMUW
+      - https://www.amazon.com/gp/product/B01ND3Z3DZ
+  
 
 ### 2. Update Databases
 
