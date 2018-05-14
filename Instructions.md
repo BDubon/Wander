@@ -15,7 +15,7 @@
 
 #### ***3. You're good to go!***
 
-  ***Note: this program uses MS excel to display CSVs***
+  ##### ***Note: this program uses MS excel to display CSVs***
 
 
 
