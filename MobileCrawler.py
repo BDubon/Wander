@@ -14,7 +14,7 @@ from PIL import Image, ImageTk
 
 def getURL():
     """ Gets user's url. Outputs valid url. """
-    url = input('Pates URL: ')
+    url = input('Paste URL: ')
 
     return url
 
@@ -22,6 +22,8 @@ def getURL():
 def urlValidator(url):
     """ This function makes sure the link is an amazon.com link. """
     if 'amazon.com/' not in url:
+        print('ERROR: Please enter a valid amazon.com URL.')
+    elif 'Amazon.com/' not in url:
         print('ERROR: Please enter a valid amazon.com URL.')
 
     else:
