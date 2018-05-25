@@ -56,7 +56,7 @@ def displayImageTK(localIMG):
 
 def buyNowTK(event):
     """ Opens product's pagen when 'Buy Now!' button is pressed. """
-    localurl = url
+    localurl = 'https://www.amazon.com/gp/product/' + asin
     webbrowser.open(localurl)
 
 
