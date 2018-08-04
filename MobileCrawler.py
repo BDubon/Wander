@@ -22,10 +22,11 @@ def getURL():
 def urlValidator(url):
     """ This function makes sure the link is an amazon.com link. """
     if 'amazon.com/' not in url:
-        print('ERROR: Please enter a valid amazon.com URL.')
-    elif 'Amazon.com/' not in url:
-        print('ERROR: Please enter a valid amazon.com URL.')
-
+        print('ERROR: Please enter a valid amazon.com URL. (ERROR 1)')
+    else:
+        validURL = url
+    if 'Amazon.com/' not in url:
+        print('ERROR: Please enter a valid amazon.com URL. (ERROR 2)')
     else:
         validURL = url
 
@@ -176,7 +177,7 @@ def csvAppend(asin, price, name):
     """ Use this function when a product is already being tracked. It'll
         append data to an existing csv file. """
     file_exists = os.path.isfile('CSVs/' + asin + '.csv')  # Check if file exists
-    date = arrow.now().format('YYYY/MM/DD HH:mm:ss')
+    date = arrow.now().format('YYYY/MM/DD')
     headers = ['Date', 'ASIN', 'Price', 'Name']
 
     with open('CSVs/' + asin + '.csv', 'a') as appendWrite:
