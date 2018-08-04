@@ -1,4 +1,4 @@
-- Organize a list of packages to download
+- Organize a list of packages to download (Dependencies)
 - Display the chart on the main GUI
 - Change price presentation
 - Optimize database (Thread)
@@ -8,3 +8,5 @@
 
       MAYBE
 - Add option to search amazon products
+
+
