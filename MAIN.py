@@ -149,8 +149,7 @@ def fullFunction(event):
     buyBtn.grid(row=4, column=11, sticky=NSEW)
 
     # Insert Data in GUI
-    C_price_lab = ttk.Label(root, text='$' + str(price) +
-                            "\n$" + str(maxPrice))
+    C_price_lab = ttk.Label(root, text='$' + str(price))
     C_price_lab.grid(row=3, column=1, padx=3, sticky=W)
     Max_price_lab = ttk.Label(root, text='$' + str(maxPrice))
     Max_price_lab.grid(row=3, column=5, padx=3, sticky=W)
@@ -195,8 +194,7 @@ buyBtn.bind('<Button-1>', buyNowTK)
 buyBtn.grid(row=4, column=11, padx=5, sticky=NSEW)
 
 # Current Price, Max, Min, Avg Labels
-currentLabel = ttk.Label(root, text='Current Price: '
-                                    '\nMax Price: ')
+currentLabel = ttk.Label(root, text='Current Price: ')
 currentLabel.grid(row=3, column=0, padx=5, sticky=E)
 
 
