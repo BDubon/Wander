@@ -2,7 +2,7 @@
 - Display the chart on the main GUI
 - Change price presentation
 - Optimize database (Thread)
-- Have a general (cloud) database of products
+- Have a general (cloud) database of products (GitHub Maybe?)
 
 
 
