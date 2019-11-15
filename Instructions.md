@@ -1,6 +1,6 @@
 
 
-#### [Home Page](./readme.md)
+#### [Home Page](./README.md)
 
 # Instructions
 
@@ -76,4 +76,4 @@
   
   
   
-#### [Home Page](./readme.md)
+#### [Home Page](./README.md)
